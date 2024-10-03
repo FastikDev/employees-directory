@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import '../src/styles/breakpoint.scss';
+@import '../src/styles/header.scss';
+@import '../src/styles/searchBar.scss';
+@import '../src/styles/navigation.scss';
+@import '../src/styles/workersList.scss';
+@import '../src/styles/spinner.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+.page {
+  width: 100%;
+  overflow: hidden;
+
+  @include for-large-up {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    margin: auto;
+    min-height: 100vh;
+  }
+}
