@@ -9,6 +9,7 @@ const Navigation = () => {
       <li className="navigation__item">Managers</li>
       <li className="navigation__item">IOS</li>
       <li className="navigation__item">Android</li>
+      <li className="navigation__item">Favorite</li>
     </ul>
   );
 };

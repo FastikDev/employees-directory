@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const WorkersList = () => {
   const avatar =
@@ -6,7 +7,7 @@ const WorkersList = () => {
 
   return (
     <section className="workers">
-      <div className="worker">
+      <Link to="/worker/1" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -14,9 +15,9 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
 
-      <div className="worker">
+      <Link to="/worker/2" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -24,9 +25,9 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
 
-      <div className="worker">
+      <Link to="/worker/3" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -34,9 +35,9 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
 
-      <div className="worker">
+      <Link to="/worker/4" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -44,9 +45,9 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
 
-      <div className="worker">
+      <Link to="/worker/5" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -54,9 +55,9 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
 
-      <div className="worker">
+      <Link to="/worker/6" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -64,9 +65,9 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
 
-      <div className="worker">
+      <Link to="/worker/7" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -74,9 +75,9 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
 
-      <div className="worker">
+      <Link to="/worker/8" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">
           <div className="worker__name">
@@ -84,7 +85,7 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
-      </div>
+      </Link>
     </section>
   );
 };
