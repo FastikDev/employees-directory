@@ -23,7 +23,7 @@
   @include for-large-up {
     display: flex;
     flex-direction: column;
-    max-width: 1280px;
+    mix-width: 1280px;
     margin: auto;
     min-height: 100vh;
   }

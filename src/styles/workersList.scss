@@ -1,6 +1,10 @@
 .workers {
   margin: 12px 16px;
   margin-bottom: 0;
+
+  @include for-large-up {
+    margin: 16px;
+  }
 }
 
 .worker {
@@ -37,5 +41,31 @@
     font-size: 13px;
     line-height: 16px;
     color: rgba(85, 85, 92, 1);
+  }
+
+  &__birthday {
+    margin-left: auto;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(85, 85, 92, 1);
+  }
+}
+
+.year {
+  display: flex;
+  height: 68px;
+  justify-content: center;
+  align-items: center;
+
+  &__line {
+    width: 72px;
+    color: rgba(195, 195, 198, 1);
+  }
+
+  &__date {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 500;
+    color: rgba(195, 195, 198, 1);
   }
 }

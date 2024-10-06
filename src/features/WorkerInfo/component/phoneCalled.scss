@@ -1,0 +1,48 @@
+.overlay {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.phone {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-contant {
+  margin: auto 8px 32px 8px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+  &__btn {
+    height: 60px;
+    background-color: rgba(245, 245, 245, 0.7);
+    color: rgba(50, 50, 50, 1);
+    padding: 18px 16px;
+    font-size: 20px;
+    line-height: 24px;
+    border: none;
+    border-radius: 13px;
+
+    &_cancel {
+      margin-top: 8px;
+      background-color: rgba(255, 255, 255, 1);
+      font-weight: 600;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    text-align: center;
+  }
+}

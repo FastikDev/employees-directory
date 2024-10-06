@@ -1,0 +1,64 @@
+@import '../../styles/breakpoint.scss';
+
+.error {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+
+    &_mobile {
+      display: block;
+
+      @include for-large-up {
+        display: none;
+      }
+    }
+
+    &_desctop {
+      display: none;
+
+      @include for-large-up {
+        display: block;
+      }
+    }
+  }
+
+  &__description {
+    margin-top: 12px;
+    margin-bottom: 0;
+    line-height: 20px;
+    color: rgba(151, 151, 155, 1);
+  }
+
+  &__link {
+    margin-top: 12px;
+    color: rgba(101, 52, 255, 1);
+    text-decoration: none;
+    line-height: 20px;
+    font-weight: 600;
+
+    &_mobile {
+      display: block;
+
+      @include for-large-up {
+        display: none;
+      }
+    }
+
+    &_desctop {
+      display: none;
+
+      @include for-large-up {
+        display: block;
+      }
+    }
+  }
+}

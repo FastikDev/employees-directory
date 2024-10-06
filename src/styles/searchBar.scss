@@ -1,14 +1,18 @@
 .search {
   margin: 0 16px;
   margin-top: 50px;
-  position: relative;
   width: 100%;
   max-width: 343px;
   display: flex;
   align-items: center;
   gap: 10px;
 
+  @include for-large-up {
+    margin-top: 12px;
+  }
+
   &__input {
+    position: relative;
     width: 100%;
     height: 40px;
     padding: 8px 44px;
@@ -20,6 +24,14 @@
     border-radius: 16px;
     border: none;
     background-color: rgba(247, 247, 248, 1);
+
+    @include for-large-up {
+      min-width: 1248px;
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
 
     &::placeholder {
       color: rgba(195, 195, 198, 1);
@@ -36,8 +48,8 @@
 
   &__icon {
     position: absolute;
-    left: 12px;
-    bottom: 50%;
+    left: 30px;
+    top: 46px;
     transform: translateY(50%);
     font-size: 24px;
     color: rgba(195, 195, 198, 1);
@@ -45,15 +57,23 @@
     .search__input:focus ~ & {
       color: rgba(5, 5, 16, 1);
     }
+
+    @include for-large-up {
+      top: 53px;
+    }
   }
 
   &__filter {
     position: absolute;
-    right: 12px;
-    bottom: 50%;
+    right: 30px;
+    top: 46px;
     transform: translateY(50%);
     font-size: 24px;
     color: rgba(195, 195, 198, 1);
+
+    @include for-large-up {
+      top: 53px;
+    }
   }
 
   &__cancel {

@@ -8,6 +8,10 @@
   white-space: nowrap;
   width: 100%;
 
+  @include for-large-up {
+    margin-top: 8px;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -24,5 +28,10 @@
       font-weight: 600;
       color: rgba(5, 5, 16, 1);
     }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }

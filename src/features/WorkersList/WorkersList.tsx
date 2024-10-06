@@ -15,8 +15,13 @@ const WorkersList = () => {
           </div>
           <div className="worker__description">Analyst</div>
         </div>
+        {/* <span className="worker__birthday">5 June</span> */}
       </Link>
-
+      {/* <div className="year">
+        <hr className="year__line" />
+        <span className="year__date">2022</span>
+        <hr className="year__line" />
+      </div> */}
       <Link to="/worker/2" className="worker">
         <img className="worker__avatar" src={avatar} alt="Worker Avatar" />
         <div className="worker__info">

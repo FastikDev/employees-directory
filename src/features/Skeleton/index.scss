@@ -1,0 +1,47 @@
+.skelet {
+  width: 100%;
+  margin: 16px;
+  height: 100%;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+  }
+
+  &__img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, rgba(243, 243, 246, 1), rgba(250, 250, 250, 1));
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 16px;
+  }
+
+  &__name {
+    width: 144px;
+    height: 16px;
+    border-radius: 50px;
+    background: linear-gradient(to bottom, rgba(243, 243, 246, 1), rgba(250, 250, 250, 1));
+  }
+
+  &__description {
+    margin-top: 6px;
+    width: 80px;
+    height: 12px;
+    border-radius: 50px;
+    background: linear-gradient(to bottom, rgba(243, 243, 246, 1), rgba(250, 250, 250, 1));
+  }
+}
