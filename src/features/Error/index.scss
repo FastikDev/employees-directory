@@ -1,4 +1,5 @@
 @import '../../styles/breakpoint.scss';
+@import '../../styles/variables.scss';
 
 .error {
   display: flex;
@@ -10,9 +11,9 @@
   &__title {
     margin-top: 8px;
     margin-bottom: 0;
-    font-size: 17px;
+    font-size: $f-size + 1;
     font-weight: 600;
-    line-height: 22px;
+    line-height: $line-height + 2;
 
     &_mobile {
       display: block;
@@ -35,14 +36,14 @@
     margin-top: 12px;
     margin-bottom: 0;
     line-height: 20px;
-    color: rgba(151, 151, 155, 1);
+    color: $color-ligth-gray;
   }
 
   &__link {
     margin-top: 12px;
-    color: rgba(101, 52, 255, 1);
+    color: $color-blue;
     text-decoration: none;
-    line-height: 20px;
+    line-height: $line-height;
     font-weight: 600;
 
     &_mobile {

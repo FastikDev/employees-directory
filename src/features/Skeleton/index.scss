@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .skelet {
   width: 100%;
   margin: 16px;
@@ -20,7 +22,7 @@
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, rgba(243, 243, 246, 1), rgba(250, 250, 250, 1));
+    background: linear-gradient(to bottom, $color-linear-start, $color-linear-end);
   }
 
   &__info {
@@ -34,7 +36,7 @@
     width: 144px;
     height: 16px;
     border-radius: 50px;
-    background: linear-gradient(to bottom, rgba(243, 243, 246, 1), rgba(250, 250, 250, 1));
+    background: linear-gradient(to bottom, $color-linear-start, $color-linear-end);
   }
 
   &__description {
@@ -42,6 +44,6 @@
     width: 80px;
     height: 12px;
     border-radius: 50px;
-    background: linear-gradient(to bottom, rgba(243, 243, 246, 1), rgba(250, 250, 250, 1));
+    background: linear-gradient(to bottom, $color-linear-start, $color-linear-end);
   }
 }

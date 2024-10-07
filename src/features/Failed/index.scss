@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .failed {
   width: 100%;
   padding: 80px 16px;
@@ -8,15 +10,15 @@
   &__title {
     margin-top: 8px;
     margin-bottom: 0;
-    font-size: 17px;
-    line-height: 22px;
+    font-size: $f-size + 1;
+    line-height: $line-height + 2;
     font-weight: 600;
   }
 
   &__description {
     margin-top: 12px;
     margin-bottom: 0;
-    line-height: 20px;
-    color: rgba(151, 151, 155, 1);
+    line-height: $line-height;
+    color: $color-ligth-gray;
   }
 }

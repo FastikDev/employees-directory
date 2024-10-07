@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactNode } from 'react';
-import Error from '.';
+import Error from '../index';
 
 interface ErrorBoundaryProps {
   children: ReactNode;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import Navigation from './Navigation';
-import SearchBar from './SearchBar';
-import Spinner from '../WorkersList/Spinner';
+import Navigation from './components/Navigation';
+import SearchBar from './components/SearchBar';
+import './index.scss';
 
 const Header = () => {
   const isDesctop = useMediaQuery({ minWidth: 1280 });
@@ -36,7 +36,6 @@ const Header = () => {
         </p>
       </div> */}
       {!loading && <SearchBar isLoading={loading} />}
-      {/* <Spinner /> */}
       <Navigation />
     </header>
   );

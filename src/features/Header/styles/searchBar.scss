@@ -1,3 +1,6 @@
+@import '../../../styles/breakpoint.scss';
+@import '../../../styles/variables.scss';
+
 .search {
   margin: 0 16px;
   margin-top: 50px;
@@ -17,13 +20,13 @@
     height: 40px;
     padding: 8px 44px;
     padding-right: 12px;
-    caret-color: rgba(101, 52, 255, 1);
-    font-size: 15px;
-    line-height: 20px;
+    caret-color: $color-blue;
+    font-size: $f-size - 1;
+    line-height: $line-height;
     font-weight: 500;
     border-radius: 16px;
     border: none;
-    background-color: rgba(247, 247, 248, 1);
+    background-color: $color-bg-light-gray;
 
     @include for-large-up {
       min-width: 1248px;
@@ -34,7 +37,7 @@
     }
 
     &::placeholder {
-      color: rgba(195, 195, 198, 1);
+      color: $color-ligth-gray;
     }
 
     &:focus {
@@ -52,10 +55,10 @@
     top: 46px;
     transform: translateY(50%);
     font-size: 24px;
-    color: rgba(195, 195, 198, 1);
+    color: $color-ligth-gray;
 
     .search__input:focus ~ & {
-      color: rgba(5, 5, 16, 1);
+      color: $color-text-black;
     }
 
     @include for-large-up {
@@ -68,8 +71,8 @@
     right: 30px;
     top: 46px;
     transform: translateY(50%);
-    font-size: 24px;
-    color: rgba(195, 195, 198, 1);
+    font-size: $f-size + 8;
+    color: $color-ligth-gray;
 
     @include for-large-up {
       top: 53px;
@@ -84,10 +87,10 @@
     cursor: pointer;
     height: 40px;
     width: 78px;
-    font-size: 14px;
-    line-height: 18px;
+    font-size: $f-size - 2;
+    line-height: $line-height - 2;
     font-weight: 600;
-    color: rgba(101, 52, 255, 1);
+    color: $color-blue;
 
     .search__input:focus ~ & {
       display: block;

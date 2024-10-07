@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import ErrorImg from './error.jpg';
+import ErrorImg from './componets/error.jpg';
 
 const Error = () => {
   return (

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import Header from './features/Header';
-import WorkersList from './features/WorkersList/WorkersList';
+import WorkersList from './features/Workers';
 import Skelet from './features/Skeleton';
 import WorkerInfo from './features/WorkerInfo';
 import Failed from './features/Failed';
 import Error from './features/Error';
-import ErrorBoundary from './features/Error/ErrorBoundary';
+import ErrorBoundary from './features/Error/componets/ErrorBoundary';
 
 const App = () => {
   const isDesctop = useMediaQuery({ minWidth: 1280 });

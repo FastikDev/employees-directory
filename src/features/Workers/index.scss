@@ -1,3 +1,6 @@
+@import '../../styles/breakpoint.scss';
+@import '../../styles/variables.scss';
+
 .workers {
   margin: 12px 16px;
   margin-bottom: 0;
@@ -25,29 +28,29 @@
   }
 
   &__name {
-    color: rgba(5, 5, 16, 1);
-    line-height: 20px;
+    color: $color-text-black;
+    line-height: $line-height;
     font-weight: 500;
   }
 
   &__tag {
-    font-size: 14px;
-    line-height: 18px;
-    color: rgba(151, 151, 155, 1);
+    font-size: $f-size - 2;
+    line-height: $line-height - 2;
+    color: $color-ligth-gray;
     margin-left: 4px;
   }
 
   &__description {
-    font-size: 13px;
-    line-height: 16px;
-    color: rgba(85, 85, 92, 1);
+    font-size: $f-size - 3;
+    line-height: $line-height - 4;
+    color: $color-gray;
   }
 
   &__birthday {
     margin-left: auto;
-    font-size: 15px;
-    line-height: 20px;
-    color: rgba(85, 85, 92, 1);
+    font-size: $f-size - 1;
+    line-height: $line-height;
+    color: $color-gray;
   }
 }
 
@@ -59,13 +62,13 @@
 
   &__line {
     width: 72px;
-    color: rgba(195, 195, 198, 1);
+    color: $line-ligth-gray;
   }
 
   &__date {
-    font-size: 15px;
-    line-height: 20px;
+    font-size: $f-size - 1;
+    line-height: $line-height;
     font-weight: 500;
-    color: rgba(195, 195, 198, 1);
+    color: $line-ligth-gray;
   }
 }

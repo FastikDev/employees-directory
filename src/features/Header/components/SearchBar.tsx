@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Sorting from '../Sorting';
+import Sorting from '../../Sorting';
+import '../styles/SearchBar.scss';
 
 const SearchBar = ({ isLoading }) => {
   const [isSortingVisible, setIsSortingVisible] = useState(false);
