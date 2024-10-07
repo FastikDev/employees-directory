@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './index.scss';
 import PhoneCalled from './component/PhoneCalled';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const WorkerInfo = () => {
   const [isCalledVisible, setIsCalledVisible] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const navigate = useNavigate();
 
   const toggleFavorite = () => {
     setIsFavorite(prev => !prev);
@@ -27,9 +28,7 @@ const WorkerInfo = () => {
   return (
     <section className="info">
       <div className="autor-info">
-        <Link to={-1}>
-          <i className="fa-solid fa-less-than info__icon"></i>
-        </Link>
+        <i className="fa-solid fa-less-than info__icon" onClick={() => navigate(-1)}></i>
         <img
           className="autor-info__avatar"
           src="https://ipfs.io/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/592.jpg"
