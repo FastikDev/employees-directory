@@ -1,5 +1,4 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -13,6 +12,7 @@ module.exports = (env, argv) => {
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
+      clean: true,
     },
     module: {
       rules: [
@@ -36,7 +36,7 @@ module.exports = (env, argv) => {
               loader: 'url-loader',
               options: {
                 limit: 8192,
-                name: '[name].[ext]',
+                name: '[name].[hash].[ext]',
                 outputPath: 'images',
                 publicPath: '/images',
               },
@@ -55,6 +55,13 @@ module.exports = (env, argv) => {
         template: './src/index.html',
         filename: 'index.html',
       }),
+      ...(isProduction
+        ? [
+            new MiniCssExtractPlugin({
+              filename: '[name].css',
+            }),
+          ]
+        : [new webpack.HotModuleReplacementPlugin()]),
     ],
     devServer: {
       historyApiFallback: true,
@@ -63,15 +70,6 @@ module.exports = (env, argv) => {
       port: 8080,
     },
   };
-
-  if (isProduction) {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
-    config.plugins.push(
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-      }),
-    );
-  }
 
   return config;
 };

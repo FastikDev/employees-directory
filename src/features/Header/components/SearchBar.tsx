@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sorting from '../../Sorting';
 import '../styles/SearchBar.scss';
 
-const SearchBar = ({ isLoading }) => {
+const SearchBar = () => {
   const [isSortingVisible, setIsSortingVisible] = useState(false);
 
   const toggleSorting = () => {
@@ -21,13 +21,8 @@ const SearchBar = ({ isLoading }) => {
   return (
     <div className="search">
       <input type="search" placeholder="Search by name, tag, email..." className="search__input" />
-      {!isLoading && (
-        <>
-          <i className="fa-solid fa-magnifying-glass search__icon"></i>
-          <i className="fa-solid fa-bars search__filter" onClick={toggleSorting}></i>
-        </>
-      )}
-
+      <i className="fa-solid fa-magnifying-glass search__icon"></i>
+      <i className="fa-solid fa-bars search__filter" onClick={toggleSorting}></i>
       <button className="search__cancel">Cancel</button>
       {isSortingVisible && <Sorting onOverlayClick={handleClickOutside} />}
     </div>

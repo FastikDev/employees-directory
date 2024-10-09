@@ -6,7 +6,8 @@ export const fetchWorkers = createAsyncThunk('workers/fetchWorkers', async () =>
   try {
     const response = await fetch(baseUrl);
     if (response.ok) {
-      return await response.json();
+      const data = await response.json();
+      return data;
     } else {
       return Promise.reject('Failed to fetch workers');
     }

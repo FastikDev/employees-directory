@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.scss';
 import PhoneCalled from './component/PhoneCalled';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 
 const WorkerInfo = () => {
   const [isCalledVisible, setIsCalledVisible] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
+
+  const { email } = useParams();
+
+  const workers = useSelector((state: RootState) => state.workers.workersList);
+  const worker = workers.find(worker => worker.email === email);
 
   const toggleFavorite = () => {
     setIsFavorite(prev => !prev);
@@ -31,13 +38,13 @@ const WorkerInfo = () => {
         <i className="fa-solid fa-less-than info__icon" onClick={() => navigate(-1)}></i>
         <img
           className="autor-info__avatar"
-          src="https://ipfs.io/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/592.jpg"
+          src={worker.avatar || '../../../public/images/default_img.png'}
           alt="Autor avatar"
         />
         <h1 className="autor-info__name">
-          Alexey Minogarov<span className="autor-info__tag">mi</span>
+          {worker.name} <span className="autor-info__tag">{worker.tag}</span>
         </h1>
-        <div className="autor-info__description">Analist</div>
+        <div className="autor-info__description">{worker.position}</div>
       </div>
       <div className="autor-contacts">
         <div className="birthday">
@@ -60,7 +67,7 @@ const WorkerInfo = () => {
         <div className="phone">
           <i className="fa-solid fa-phone phone__icon"></i>
           <span className="phone__number" onClick={toggleCalled}>
-            +7 (999) 900 90 90
+            {worker.phone}
           </span>
         </div>
       </div>

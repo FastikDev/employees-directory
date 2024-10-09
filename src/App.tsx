@@ -12,23 +12,13 @@ import ErrorBoundary from './features/Error/componets/ErrorBoundary';
 const App = () => {
   const isDesctop = useMediaQuery({ minWidth: 1280 });
 
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const routes: RouteObject[] = [
     {
       path: '/',
       element: (
         <ErrorBoundary onError={() => {}}>
           <Header />
-          {loading ? <Skelet /> : <WorkersList />}
+          <WorkersList />
         </ErrorBoundary>
       ),
     },
@@ -59,45 +49,6 @@ const App = () => {
   const router = createBrowserRouter(routes, {
     basename: '/',
   });
-
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [startY, setStartY] = useState<number | null>(null);
-
-  const handleTouchStart = (e: TouchEvent) => {
-    if (window.screenY === 0) {
-      setStartY(e.touches[0].clientY);
-    }
-  };
-
-  const handleTouchMove = (e: TouchEvent) => {
-    if (startY !== null) {
-      const distance = e.touches[0].clientY - startY;
-      if (distance > 50) {
-        setIsRefreshing(true);
-      }
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (isRefreshing) {
-      setTimeout(() => {
-        setIsRefreshing(false);
-      }, 2000);
-    }
-    setStartY(null);
-  };
-
-  useEffect(() => {
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
-
-    return () => {
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, [startY, isRefreshing]);
 
   return (
     <div className="page">
