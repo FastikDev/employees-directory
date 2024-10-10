@@ -1,9 +1,15 @@
 import moment from 'moment';
 
-export const getAge = (birthDate: number) => {
-  const birthDateMoment = moment.unix(birthDate / 1000);
+export const getAge = (birthDate: string) => {
+  const birthDateMoment = moment(birthDate);
   const age = moment().diff(birthDateMoment, 'years');
   return age;
+};
+
+export const getBirthDate = (birthDate: string) => {
+  const birthDateMoment = moment(birthDate).format('D MMMM YYYY');
+
+  return birthDateMoment;
 };
 
 type Worker = {
@@ -48,12 +54,12 @@ export const getEmployees = (
   return filteredEmployees.sort(compareWorkers);
 };
 
-export const groupWorkers = (sortWorkers: Worker[], sorting: 'alphabet' | 'birthday') => {
+export const groupWorkers = (sortedWorkers: Worker[], sorting: 'alphabet' | 'birthday') => {
   if (sorting === 'alphabet') {
-    return { '': sortWorkers };
+    return { '': sortedWorkers };
   }
 
-  return sortWorkers.reduce<Record<string, Worker[]>>((acc, worker) => {
+  return sortedWorkers.reduce<Record<string, Worker[]>>((acc, worker) => {
     const year = moment(worker.birthDate).format('YYYY');
 
     if (!acc[year]) {
@@ -63,5 +69,5 @@ export const groupWorkers = (sortWorkers: Worker[], sorting: 'alphabet' | 'birth
     acc[year].push(worker);
 
     return acc;
-  }, {});
+  }, {} as Record<string, Worker[]>);
 };

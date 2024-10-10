@@ -12,6 +12,8 @@
     font-weight: bold;
     top: 44px;
     left: 16px;
+    animation: none !important;
+    transition: none !important;
 
     @include for-large-up {
       top: 22px;
