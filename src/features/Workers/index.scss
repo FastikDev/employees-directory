@@ -57,12 +57,17 @@
 .year {
   display: flex;
   height: 68px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   &__line {
     width: 72px;
-    color: $line-ligth-gray;
+    height: 1px;
+    background-color: $line-ligth-gray;
+
+    @include for-large-up {
+      width: 508px;
+    }
   }
 
   &__date {

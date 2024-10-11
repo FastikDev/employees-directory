@@ -2,34 +2,35 @@ import React, { useEffect } from 'react';
 import { fetchWorkers } from '../../common/utils/gateway';
 import { useDispatch, useSelector } from 'react-redux';
 import { WorkersData, setSorting } from '../../common/redux/WorkersSlice';
-import { Link } from 'react-router-dom';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-// import Spinner from './component/Spinner';
+import { useNavigate } from 'react-router-dom';
+import Skelet from '../Skeleton';
 import Failed from '../Failed';
 import Error from '../Error';
 import { getEmployees, groupWorkers } from '../../common/utils/utils';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import './index.scss';
-import Skelet from '../Skeleton';
 
 const WorkersList: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchWorkers());
     dispatch(setSorting('alphabet'));
   }, [dispatch]);
 
-  const navigate = useNavigate();
-
-  const [searchParams] = useSearchParams();
-
   const { loading } = useSelector((state: RootState) => state.workers);
-
   const position = useSelector((state: RootState) => state.workers.position);
   const workers = useSelector((state: RootState) => state.workers.workersList);
   const sorting = useSelector((state: RootState) => state.workers.sorting);
   const searchValue = '';
+
+  const onWorkersSelect = (id: string | undefined) => {
+    if (id) {
+      const currentPath = `${window.location.pathname}${window.location.search}`;
+      navigate(`worker/${id}`, { state: { from: currentPath } });
+    }
+  };
 
   const sortedWorkers = getEmployees(workers, sorting, position, searchValue);
   const groupedWorker = groupWorkers(sortedWorkers, sorting);
@@ -46,24 +47,15 @@ const WorkersList: React.FC = () => {
       break;
   }
 
-  const onWorkersSelect = (id: string | undefined) => {
-    console.log('Selected Worker ID:', id);
-
-    if (id) {
-      const currentPath = `${window.location.pathname}${window.location.search}`;
-      navigate(`worker/${id}`, { state: { from: currentPath } });
-    }
-  };
-
   return (
     <section className="workers">
       {Object.keys(groupedWorker).map(year => (
         <React.Fragment key={year}>
           {sorting !== 'alphabet' && (
             <li className="year">
-              <span className="year__line" />
+              <div className="year__line" />
               <h3 className="year__date">{year}</h3>
-              <span className="year__line" />
+              <div className="year__line" />
             </li>
           )}
           <ul>

@@ -2,14 +2,11 @@ import moment from 'moment';
 
 export const getAge = (birthDate: string) => {
   const birthDateMoment = moment(birthDate);
-  const age = moment().diff(birthDateMoment, 'years');
-  return age;
+  return moment().diff(birthDateMoment, 'years');
 };
 
 export const getBirthDate = (birthDate: string) => {
-  const birthDateMoment = moment(birthDate).format('D MMMM YYYY');
-
-  return birthDateMoment;
+  return moment(birthDate).format('D MMMM YYYY');
 };
 
 type Worker = {
@@ -18,6 +15,7 @@ type Worker = {
   position: string;
   tag: string;
   birthDate: string;
+  isFavorite: boolean;
   sortWorkers?: void;
 };
 
@@ -28,9 +26,12 @@ export const getEmployees = (
   searchValue?: string,
 ): Worker[] => {
   const filteredEmployees = employees.reduce<Worker[]>((acc, worker) => {
-    const isPositionMatch = position
-      ? position === 'all' || worker.position.toLowerCase() === position.toLowerCase()
-      : true;
+    const isPositionMatch =
+      position === 'favorite'
+        ? worker.isFavorite
+        : position
+        ? position === 'all' || worker.position.toLowerCase() === position.toLowerCase()
+        : true;
 
     const isSearchMatch = searchValue
       ? [worker.name, worker.tag, worker.email].some(value =>
@@ -69,5 +70,5 @@ export const groupWorkers = (sortedWorkers: Worker[], sorting: 'alphabet' | 'bir
     acc[year].push(worker);
 
     return acc;
-  }, {} as Record<string, Worker[]>);
+  }, {});
 };

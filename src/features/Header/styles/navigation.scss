@@ -26,6 +26,10 @@
     color: $color-ligth-gray;
     line-height: 20px;
 
+    &_selected {
+      border-bottom: 2px solid $color-blue;
+    }
+
     &:focus {
       border-bottom: 2px solid $color-blue;
       font-weight: 600;

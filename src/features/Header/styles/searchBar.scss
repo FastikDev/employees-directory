@@ -74,6 +74,10 @@
     font-size: $f-size + 8;
     color: $color-ligth-gray;
 
+    &_active {
+      color: $color-blue;
+    }
+
     @include for-large-up {
       top: 53px;
     }

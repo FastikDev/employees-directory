@@ -10,6 +10,7 @@ export interface WorkersData {
   email: string;
   birthDate: string;
   tag: string;
+  isFavorite: boolean;
 }
 
 interface WorkersState {
@@ -53,6 +54,16 @@ const workersSlice = createSlice({
     ) => {
       state.position = action.payload;
     },
+    setFavorite: (state, action: PayloadAction<{ id: string; isFavorite: boolean }>) => {
+      const workerIndex = state.workersList.findIndex(worker => worker.id === action.payload.id);
+      if (workerIndex !== -1) {
+        state.workersList[workerIndex] = {
+          ...state.workersList[workerIndex],
+          isFavorite: action.payload.isFavorite,
+        };
+      }
+      console.log('Обновленный работник:', state.workersList[workerIndex]);
+    },
   },
   extraReducers: builder => {
     builder
@@ -62,7 +73,10 @@ const workersSlice = createSlice({
       })
       .addCase(fetchWorkers.fulfilled, (state, action: PayloadAction<WorkersData[]>) => {
         state.loading = LoadingStatus.SUCCESS;
-        state.workersList = action.payload;
+        state.workersList = action.payload.map(worker => ({
+          ...worker,
+          isFavorite: worker.isFavorite ?? false,
+        }));
       })
       .addCase(fetchWorkers.rejected, (state, action) => {
         state.loading = LoadingStatus.FAILED;
@@ -71,5 +85,5 @@ const workersSlice = createSlice({
   },
 });
 
-export const { setWorkersList, setPosition, setSorting } = workersSlice.actions;
+export const { setWorkersList, setPosition, setSorting, setFavorite } = workersSlice.actions;
 export default workersSlice.reducer;
