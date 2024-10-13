@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { fetchWorkers } from '../../common/utils/gateway';
 import { useDispatch, useSelector } from 'react-redux';
 import { WorkersData, setSorting } from '../../common/redux/WorkersSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Skelet from '../Skeleton';
 import Failed from '../Failed';
 import Error from '../Error';
@@ -13,6 +13,9 @@ import './index.scss';
 const WorkersList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const [search] = useSearchParams();
+
+  const SearhText = search.get('search') || '';
 
   useEffect(() => {
     dispatch(fetchWorkers());
@@ -23,7 +26,6 @@ const WorkersList: React.FC = () => {
   const position = useSelector((state: RootState) => state.workers.position);
   const workers = useSelector((state: RootState) => state.workers.workersList);
   const sorting = useSelector((state: RootState) => state.workers.sorting);
-  const searchValue = '';
 
   const onWorkersSelect = (id: string | undefined) => {
     if (id) {
@@ -32,7 +34,7 @@ const WorkersList: React.FC = () => {
     }
   };
 
-  const sortedWorkers = getEmployees(workers, sorting, position, searchValue);
+  const sortedWorkers = getEmployees(workers, sorting, position, SearhText);
   const groupedWorker = groupWorkers(sortedWorkers, sorting);
 
   switch (loading) {
