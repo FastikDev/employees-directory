@@ -2,10 +2,7 @@
 @import '../../../styles/variables.scss';
 
 .search {
-  margin: 0 16px;
   margin-top: 50px;
-  width: 100%;
-  max-width: 343px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -16,7 +13,8 @@
 
   &__input {
     position: relative;
-    width: 100%;
+    flex-grow: 1;
+    max-width: 100%;
     height: 40px;
     padding: 8px 44px;
     padding-right: 12px;
@@ -29,7 +27,7 @@
     background-color: $color-bg-light-gray;
 
     @include for-large-up {
-      min-width: 1248px;
+      max-width: 100%;
     }
 
     &::-webkit-search-cancel-button {
@@ -41,7 +39,12 @@
     }
 
     &:focus {
+      width: 265px;
       outline: none;
+
+      @include for-large-up {
+        width: 1200px;
+      }
     }
 
     &:focus ~ .search__filter {
@@ -84,7 +87,7 @@
   }
 
   &__cancel {
-    display: none;
+    display: block;
     border: none;
     outline: none;
     background: none;
@@ -96,9 +99,5 @@
     font-weight: 600;
     color: $color-blue;
     z-index: 10;
-
-    .search__input:focus ~ & {
-      display: block;
-    }
   }
 }

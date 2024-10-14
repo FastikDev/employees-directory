@@ -93,9 +93,11 @@ const SearchBar = ({ onSearchChange }) => {
         }`}
         onClick={toggleSorting}
       ></i>
-      <button className="search__cancel" type="button" onClick={clearInput}>
-        Cancel
-      </button>
+      {searchValue && (
+        <button className="search__cancel" type="button" onClick={clearInput}>
+          Cancel
+        </button>
+      )}
 
       {isSortingVisible && (
         <Sorting onOverlayClick={handleClickOutside} onSortingChange={handleSortingChange} />
