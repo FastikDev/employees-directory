@@ -15,12 +15,14 @@ const SearchBar = ({ onSearchChange }) => {
 
   useEffect(() => {
     const search = new URLSearchParams(location.search).get('search');
+    const sort = new URLSearchParams(location.search).get('sort') || 'alphabet';
+
     if (search) {
       setSearchValue(search);
-    } else {
-      setSearchValue('');
     }
-  }, [location.search]);
+
+    dispatch(setSorting(sort === 'birthday' ? 'birthday' : 'alphabet'));
+  }, [location.search, dispatch]);
 
   const toggleSorting = () => {
     setIsSortingVisible(prev => !prev);
@@ -36,21 +38,17 @@ const SearchBar = ({ onSearchChange }) => {
   };
 
   const clearInput = () => {
-    console.log('Clear');
     setSearchValue('');
-
     const params = new URLSearchParams(location.search);
     params.delete('search');
     navigate({ search: params.toString() }, { replace: true });
   };
 
   const handleSortingChange = (btnType: 'alphabet' | 'birthday') => {
+    const params = new URLSearchParams(location.search);
+    params.set('sort', btnType);
+    navigate({ search: params.toString() }, { replace: true });
     dispatch(setSorting(btnType));
-
-    const saveSort = new URLSearchParams(location.search);
-
-    btnType === 'alphabet' ? saveSort.delete('sort') : saveSort.set('sort', 'birthday');
-    navigate({ search: saveSort.toString() }, { replace: true });
   };
 
   const handleSearchChange = event => {
@@ -70,7 +68,7 @@ const SearchBar = ({ onSearchChange }) => {
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = event => {
     if (event.key === 'Enter') {
       event.preventDefault();
     }

@@ -9,10 +9,10 @@ import { useSearchParams } from 'react-router-dom';
 const Navigation = () => {
   const dispatch = useDispatch();
   const currentPosition = useSelector((state: RootState) => state.workers.position);
-  const [searh, setSearch] = useSearchParams();
+  const [searсh, setSearch] = useSearchParams();
 
   useEffect(() => {
-    const positionParam = searh.get('position');
+    const positionParam = searсh.get('position');
     if (positionParam) {
       dispatch(
         setPosition(
@@ -27,12 +27,13 @@ const Navigation = () => {
         ),
       );
     }
-  }, [dispatch, searh]);
+  }, [dispatch, searсh]);
 
   const handlePosition = (
     position: 'all' | 'designer' | 'analyst' | 'manager' | 'android' | 'iso' | 'favorite',
   ) => {
-    setSearch({ position });
+    searсh.set('position', position);
+    setSearch(searсh);
   };
 
   return (

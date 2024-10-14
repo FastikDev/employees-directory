@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { fetchWorkers } from '../../common/utils/gateway';
 import { useDispatch, useSelector } from 'react-redux';
-import { WorkersData, setSorting } from '../../common/redux/WorkersSlice';
+import { WorkersData, setPosition, setSorting } from '../../common/redux/WorkersSlice';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Skelet from '../Skeleton';
 import Failed from '../Failed';
@@ -13,14 +13,28 @@ import './index.scss';
 const WorkersList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const [search] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  const SearhText = search.get('search') || '';
+  const searchText = searchParams.get('search') || '';
+  const sortParam = searchParams.get('sort') || 'alphabet';
+  const positionParam = searchParams.get('position') || 'all';
 
   useEffect(() => {
     dispatch(fetchWorkers());
-    dispatch(setSorting('alphabet'));
-  }, [dispatch]);
+    dispatch(setSorting(sortParam === 'birthday' ? 'birthday' : 'alphabet'));
+    dispatch(
+      setPosition(
+        positionParam as
+          | 'all'
+          | 'designer'
+          | 'analyst'
+          | 'manager'
+          | 'android'
+          | 'iso'
+          | 'favorite',
+      ),
+    );
+  }, [dispatch, sortParam, positionParam]);
 
   const { loading } = useSelector((state: RootState) => state.workers);
   const position = useSelector((state: RootState) => state.workers.position);
@@ -34,7 +48,7 @@ const WorkersList: React.FC = () => {
     }
   };
 
-  const sortedWorkers = getEmployees(workers, sorting, position, SearhText);
+  const sortedWorkers = getEmployees(workers, sorting, position, searchText);
   const groupedWorker = groupWorkers(sortedWorkers, sorting);
 
   switch (loading) {
