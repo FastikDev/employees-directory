@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSorting } from '../../../common/redux/EmployeesSlice';
 import Sorting from './Sorting';
-import '../styles/SearchBar.scss';
+import '../styles/searchBar.scss';
 
 const SearchBar = ({ onSearchChange }) => {
   const dispatch = useDispatch();
