@@ -3,10 +3,10 @@ import { useMediaQuery } from 'react-responsive';
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import Header from './features/Header';
 import WorkersList from './features/Workers';
-import WorkerInfo from './features/WorkerInfo';
-import Failed from './features/Failed';
+import WorkerInfo from './features/Workers/component/WorkerInfo/index';
 import Error from './features/Error';
 import ErrorBoundary from './features/Error/componets/ErrorBoundary';
+import NotFound from './features/Workers/component/NotFound';
 
 const App = () => {
   const isDesctop = useMediaQuery({ minWidth: 1280 });
@@ -39,7 +39,7 @@ const App = () => {
       element: (
         <ErrorBoundary onError={() => {}}>
           <Header />
-          <Failed />
+          <NotFound />
         </ErrorBoundary>
       ),
     },

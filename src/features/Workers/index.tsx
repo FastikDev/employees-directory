@@ -3,8 +3,8 @@ import { fetchWorkers } from '../../common/utils/gateway';
 import { useDispatch, useSelector } from 'react-redux';
 import { WorkersData, setPosition, setSorting } from '../../common/redux/WorkersSlice';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import Skelet from '../Skeleton';
-import Failed from '../Failed';
+import Skeleton from './component/Skeleton';
+import NotFound from './component/NotFound';
 import Error from '../Error';
 import { getEmployees, groupWorkers } from '../../common/utils/utils';
 import { AppDispatch, RootState } from '../../store';
@@ -53,12 +53,12 @@ const WorkersList: React.FC = () => {
 
   switch (loading) {
     case 'loading':
-      return <Skelet />;
+      return <Skeleton />;
     case 'failed':
       return <Error />;
     case 'success':
       if (!sortedWorkers.length) {
-        return <Failed />;
+        return <NotFound />;
       }
       break;
   }

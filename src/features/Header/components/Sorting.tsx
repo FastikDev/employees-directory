@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import './index.scss';
+import { RootState } from '../../../store';
+import '../styles/sorting.scss';
 
 interface SortingProps {
   onOverlayClick: (event) => void;

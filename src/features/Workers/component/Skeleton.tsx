@@ -1,7 +1,7 @@
 import React from 'react';
-import './index.scss';
+import '../styles/skeleton.scss';
 
-const Skelet = () => {
+const Skeleton = () => {
   return (
     <div className="skelet">
       <ul className="skelet__list">
@@ -19,4 +19,4 @@ const Skelet = () => {
   );
 };
 
-export default Skelet;
+export default Skeleton;

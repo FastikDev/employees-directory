@@ -1,8 +1,8 @@
 import React from 'react';
-import search from '../../../public/images/search.png';
-import './index.scss';
+import search from '../../../../public/images/search.png';
+import '../styles/notFound.scss';
 
-const Failed = () => {
+const NotFound = () => {
   return (
     <section className="failed">
       <img className="failed__img" src={search} alt="Search img" />
@@ -12,4 +12,4 @@ const Failed = () => {
   );
 };
 
-export default Failed;
+export default NotFound;

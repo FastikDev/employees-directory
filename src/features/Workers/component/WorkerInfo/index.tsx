@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { getAge, getBirthDate } from '../../common/utils/utils';
+import { getAge, getBirthDate } from '../../../../common/utils/utils';
 import './index.scss';
 import PhoneCalled from './component/PhoneCalled';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '../../store';
+import { AppDispatch, RootState } from '../../../../store';
 import { useDispatch, useSelector } from 'react-redux';
-import Failed from '../Failed';
-import { setFavorite } from '../../common/redux/WorkersSlice';
+import NotFound from '../NotFound';
+import { setFavorite } from '../../../../common/redux/WorkersSlice';
 
 const WorkerInfo = () => {
   const [isCalledVisible, setIsCalledVisible] = useState(false);
@@ -19,7 +19,7 @@ const WorkerInfo = () => {
   );
 
   if (!worker) {
-    return <Failed />;
+    return <NotFound />;
   }
 
   const { tag, avatar, position, birthDate, name, phone, isFavorite } = worker;
