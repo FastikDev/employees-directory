@@ -7,7 +7,7 @@ const PhoneCalled = ({ onCancelClick, phone }) => {
   return (
     <div className="phone overlay" onClick={onCancelClick}>
       <div className="phone-contant">
-        <a className="phone-contant__btn" href={phone}>
+        <a className="phone-contant__btn" href={`tel:${phone}`}>
           {phone}
         </a>
         <button className="phone-contant__btn phone-contant__btn_cancel" onClick={onCancelClick}>

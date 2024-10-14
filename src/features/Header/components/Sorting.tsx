@@ -9,7 +9,7 @@ interface SortingProps {
 }
 
 const Sorting: React.FC<SortingProps> = ({ onOverlayClick, onSortingChange }) => {
-  const activeSorting = useSelector((state: RootState) => state.workers.sorting);
+  const activeSorting = useSelector((state: RootState) => state.employees.sorting);
 
   return (
     <div className="sorting overlay" onClick={onOverlayClick}>

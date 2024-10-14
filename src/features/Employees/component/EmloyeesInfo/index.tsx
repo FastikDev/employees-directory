@@ -6,35 +6,33 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import NotFound from '../NotFound';
-import { setFavorite } from '../../../../common/redux/WorkersSlice';
+import { setFavorite } from '../../../../common/redux/EmployeesSlice';
 
-const WorkerInfo = () => {
+const EmployeeInfo = () => {
   const [isCalledVisible, setIsCalledVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
-  const { workerId } = useParams<{ workerId: string }>();
 
-  const worker = useSelector((state: RootState) =>
-    state.workers.workersList.find(worker => worker.id === workerId),
+  const { id } = useParams<{ id: string }>();
+
+  const employee = useSelector((state: RootState) =>
+    state.employees.employeesList.find(employee => employee.id === id),
   );
 
-  if (!worker) {
+  if (!employee) {
     return <NotFound />;
   }
 
-  const { tag, avatar, position, birthDate, name, phone, isFavorite } = worker;
+  const { tag, avatar, position, birthDate, name, phone, isFavorite } = employee;
 
   const birthDateMoment = getBirthDate(birthDate);
   const age = getAge(birthDate);
 
   const toggleFavorite = () => {
-    console.log('Текущий ID работника:', workerId);
-    console.log('Текущий статус избранного:', isFavorite);
-
-    const newFavoriteStatus = !isFavorite;
-    console.log('Новое состояние избранного:', newFavoriteStatus);
-
-    dispatch(setFavorite({ id: workerId, isFavorite: newFavoriteStatus }));
+    if (id) {
+      const newFavoriteStatus = !isFavorite;
+      dispatch(setFavorite({ id, isFavorite: newFavoriteStatus }));
+    }
   };
 
   const toggleCalled = () => {
@@ -56,7 +54,7 @@ const WorkerInfo = () => {
         <i className="fa-solid fa-less-than info__icon" onClick={() => navigate(-1)}></i>
         <img
           className="autor-info__avatar"
-          src={avatar || '../../../public/images/default_img.png'}
+          src={avatar || '/images/default_img.png'}
           alt="Autor avatar"
         />
         <h1 className="autor-info__name">
@@ -93,4 +91,4 @@ const WorkerInfo = () => {
   );
 };
 
-export default WorkerInfo;
+export default EmployeeInfo;

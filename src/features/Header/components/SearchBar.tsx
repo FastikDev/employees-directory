@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setSorting } from '../../../common/redux/WorkersSlice';
+import { setSorting } from '../../../common/redux/EmployeesSlice';
 import Sorting from './Sorting';
 import '../styles/SearchBar.scss';
 

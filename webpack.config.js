@@ -33,7 +33,7 @@ module.exports = (env, argv) => {
           test: /\.(jpg|png|gif|svg|webp)$/i,
           use: [
             {
-              loader: 'url-loader',
+              loader: 'file-loader',
               options: {
                 limit: 8192,
                 name: '[name].[hash].[ext]',
@@ -68,6 +68,9 @@ module.exports = (env, argv) => {
       open: true,
       hot: true,
       port: 8080,
+      static: {
+        directory: path.join(__dirname, 'public'),
+      },
     },
   };
 

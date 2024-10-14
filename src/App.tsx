@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import Header from './features/Header';
-import WorkersList from './features/Workers';
-import WorkerInfo from './features/Workers/component/WorkerInfo/index';
+import EmployeesList from './features/Employees';
+import EmployeeInfo from './features/Employees/component/EmloyeesInfo';
 import Error from './features/Error';
 import ErrorBoundary from './features/Error/componets/ErrorBoundary';
-import NotFound from './features/Workers/component/NotFound';
+import NotFound from './features/Employees/component/NotFound';
 
 const App = () => {
   const isDesctop = useMediaQuery({ minWidth: 1280 });
@@ -17,13 +17,13 @@ const App = () => {
       element: (
         <ErrorBoundary onError={() => {}}>
           <Header />
-          <WorkersList />
+          <EmployeesList />
         </ErrorBoundary>
       ),
     },
     {
-      path: 'worker/:workerId',
-      element: <WorkerInfo />,
+      path: 'employees/:id',
+      element: <EmployeeInfo />,
     },
     {
       path: '/error',

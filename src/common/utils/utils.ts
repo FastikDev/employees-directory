@@ -9,65 +9,65 @@ export const getBirthDate = (birthDate: string) => {
   return moment(birthDate).format('D MMMM YYYY');
 };
 
-type Worker = {
+type Employee = {
   name: string;
   email: string;
   position: string;
   tag: string;
   birthDate: string;
   isFavorite: boolean;
-  sortWorkers?: void;
+  sortEmploees?: void;
 };
 
 export const getEmployees = (
-  employees: Worker[],
+  employees: Employee[],
   sorting: 'alphabet' | 'birthday',
   position?: string,
   searchValue?: string,
-): Worker[] => {
-  const filteredEmployees = employees.reduce<Worker[]>((acc, worker) => {
+): Employee[] => {
+  const filteredEmployees = employees.reduce<Employee[]>((acc, employee) => {
     const isPositionMatch =
       position === 'favorite'
-        ? worker.isFavorite
+        ? employee.isFavorite
         : position
-        ? position === 'all' || worker.position.toLowerCase() === position.toLowerCase()
+        ? position === 'all' || employee.position.toLowerCase() === position.toLowerCase()
         : true;
 
     const isSearchMatch = searchValue
-      ? [worker.name, worker.tag, worker.email].some(value =>
+      ? [employee.name, employee.tag, employee.email].some(value =>
           value.toLowerCase().includes(searchValue.toLowerCase()),
         )
       : true;
 
     if (isPositionMatch && isSearchMatch) {
-      acc.push(worker);
+      acc.push(employee);
     }
 
     return acc;
   }, []);
 
-  const compareWorkers = (a: Worker, b: Worker): number => {
+  const compareEmployees = (a: Employee, b: Employee): number => {
     return sorting === 'alphabet'
       ? a.name.localeCompare(b.name)
       : moment(a.birthDate).diff(moment(b.birthDate));
   };
 
-  return filteredEmployees.sort(compareWorkers);
+  return filteredEmployees.sort(compareEmployees);
 };
 
-export const groupWorkers = (sortedWorkers: Worker[], sorting: 'alphabet' | 'birthday') => {
+export const groupedEmployees = (sortedEmployees: Employee[], sorting: 'alphabet' | 'birthday') => {
   if (sorting === 'alphabet') {
-    return { '': sortedWorkers };
+    return { '': sortedEmployees };
   }
 
-  return sortedWorkers.reduce<Record<string, Worker[]>>((acc, worker) => {
-    const year = moment(worker.birthDate).format('YYYY');
+  return sortedEmployees.reduce<Record<string, Employee[]>>((acc, employee) => {
+    const year = moment(employee.birthDate).format('YYYY');
 
     if (!acc[year]) {
       acc[year] = [];
     }
 
-    acc[year].push(worker);
+    acc[year].push(employee);
 
     return acc;
   }, {});

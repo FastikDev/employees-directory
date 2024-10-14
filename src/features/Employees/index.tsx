@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { fetchWorkers } from '../../common/utils/gateway';
+import { fetchEmployees } from '../../common/utils/gateway';
 import { useDispatch, useSelector } from 'react-redux';
-import { WorkersData, setPosition, setSorting } from '../../common/redux/WorkersSlice';
+import { EmployeesData, setPosition, setSorting } from '../../common/redux/EmployeesSlice';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Skeleton from './component/Skeleton';
 import NotFound from './component/NotFound';
 import Error from '../Error';
-import { getEmployees, groupWorkers } from '../../common/utils/utils';
+import { getEmployees, groupedEmployees } from '../../common/utils/utils';
 import { AppDispatch, RootState } from '../../store';
 import './index.scss';
 
-const WorkersList: React.FC = () => {
+const EmployeesList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -20,7 +20,7 @@ const WorkersList: React.FC = () => {
   const positionParam = searchParams.get('position') || 'all';
 
   useEffect(() => {
-    dispatch(fetchWorkers());
+    dispatch(fetchEmployees());
     dispatch(setSorting(sortParam === 'birthday' ? 'birthday' : 'alphabet'));
     dispatch(
       setPosition(
@@ -36,20 +36,20 @@ const WorkersList: React.FC = () => {
     );
   }, [dispatch, sortParam, positionParam]);
 
-  const { loading } = useSelector((state: RootState) => state.workers);
-  const position = useSelector((state: RootState) => state.workers.position);
-  const workers = useSelector((state: RootState) => state.workers.workersList);
-  const sorting = useSelector((state: RootState) => state.workers.sorting);
+  const { loading } = useSelector((state: RootState) => state.employees);
+  const position = useSelector((state: RootState) => state.employees.position);
+  const employees = useSelector((state: RootState) => state.employees.employeesList);
+  const sorting = useSelector((state: RootState) => state.employees.sorting);
 
-  const onWorkersSelect = (id: string | undefined) => {
+  const onEmployeesSelect = (id: string | undefined) => {
     if (id) {
       const currentPath = `${window.location.pathname}${window.location.search}`;
-      navigate(`worker/${id}`, { state: { from: currentPath } });
+      navigate(`/employees/${id}`, { state: { from: currentPath } });
     }
   };
 
-  const sortedWorkers = getEmployees(workers, sorting, position, searchText);
-  const groupedWorker = groupWorkers(sortedWorkers, sorting);
+  const sortedEmployees = getEmployees(employees, sorting, position, searchText);
+  const groupedEmployee = groupedEmployees(sortedEmployees, sorting);
 
   switch (loading) {
     case 'loading':
@@ -57,15 +57,15 @@ const WorkersList: React.FC = () => {
     case 'failed':
       return <Error />;
     case 'success':
-      if (!sortedWorkers.length) {
+      if (!sortedEmployees.length) {
         return <NotFound />;
       }
       break;
   }
 
   return (
-    <section className="workers">
-      {Object.keys(groupedWorker).map(year => (
+    <section className="employees">
+      {Object.keys(groupedEmployee).map(year => (
         <React.Fragment key={year}>
           {sorting !== 'alphabet' && (
             <li className="year">
@@ -75,18 +75,22 @@ const WorkersList: React.FC = () => {
             </li>
           )}
           <ul>
-            {(groupedWorker as Record<string, WorkersData[]>)[year].map(worker => (
-              <li className="worker" onClick={() => onWorkersSelect(worker.id)} key={worker.id}>
+            {(groupedEmployee as Record<string, EmployeesData[]>)[year].map(employee => (
+              <li
+                className="employee"
+                onClick={() => onEmployeesSelect(employee.id)}
+                key={employee.id}
+              >
                 <img
-                  className="worker__avatar"
-                  src={worker.avatar || '../../../public/images/default_img.png'}
-                  alt={`${worker.name}'s avatar`}
+                  className="employee__avatar"
+                  src={employee.avatar || '../../../public/images/default_img.png'}
+                  alt={`${employee.name}'s avatar`}
                 />
-                <div className="worker__info">
-                  <div className="worker__name">
-                    {worker.name} <span className="worker__tag">{worker.tag}</span>
+                <div className="employee__info">
+                  <div className="employee__name">
+                    {employee.name} <span className="employee__tag">{employee.tag}</span>
                   </div>
-                  <div className="worker__description">{worker.position}</div>
+                  <div className="employee__description">{employee.position}</div>
                 </div>
               </li>
             ))}
@@ -97,4 +101,4 @@ const WorkersList: React.FC = () => {
   );
 };
 
-export default WorkersList;
+export default EmployeesList;
