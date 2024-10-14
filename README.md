@@ -1,6 +1,6 @@
 # Project: Employees-Directory
 
-### [Netify](https://main--employees01.netlify.app/)
+### [Netify](https://employees-directoty-app.netlify.app/)
 
 ### The tech stack is:
 
