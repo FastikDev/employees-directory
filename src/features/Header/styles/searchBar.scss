@@ -76,6 +76,7 @@
     transform: translateY(50%);
     font-size: $f-size + 8;
     color: $color-ligth-gray;
+    cursor: pointer;
 
     &_active {
       color: $color-blue;

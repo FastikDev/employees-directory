@@ -25,6 +25,7 @@
     font-size: $f-size - 1;
     color: $color-ligth-gray;
     line-height: 20px;
+    cursor: pointer;
 
     &_selected {
       border-bottom: 2px solid $color-blue;
