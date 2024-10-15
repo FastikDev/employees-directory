@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = (_, argv) => {
@@ -34,7 +33,7 @@ module.exports = (_, argv) => {
           test: /\.(jpg|png|gif|svg|webp)$/i,
           use: [
             {
-              loader: 'file-loader',
+              loader: 'url-loader',
               options: {
                 limit: 8192,
                 name: '[name].[hash].[ext]',
@@ -55,9 +54,6 @@ module.exports = (_, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
-      }),
-      new CopyWebpackPlugin({
-        patterns: [{ from: 'public/_redirects', to: './' }],
       }),
       ...(isProduction
         ? [

@@ -83,7 +83,7 @@ const EmployeesList: React.FC = () => {
               >
                 <img
                   className="employee__avatar"
-                  src={employee.avatar || '../../../public/images/default_img.png'}
+                  src={employee.avatar || '/images/default_img.png'}
                   alt={`${employee.name}'s avatar`}
                 />
                 <div className="employee__info">

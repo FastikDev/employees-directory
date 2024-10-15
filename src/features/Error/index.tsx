@@ -4,7 +4,7 @@ import './index.scss';
 const Error = () => {
   return (
     <div className="error">
-      <img src="./images/error.png" alt="Error" />
+      <img src="/images/error.png" alt="Error" />
       <h1 className="error__title error__title_mobile">Some unexpected error...</h1>
       <h1 className="error__title error__title_desctop">Unexpected error occurred...</h1>
       <p className="error__description">Our team is fixing it now</p>
