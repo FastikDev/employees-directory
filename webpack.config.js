@@ -39,7 +39,7 @@ module.exports = (_, argv) => {
                 limit: 8192,
                 name: '[name].[hash].[ext]',
                 outputPath: 'images',
-                publicPath: 'public/images',
+                publicPath: '/images',
               },
             },
           ],
@@ -51,7 +51,7 @@ module.exports = (_, argv) => {
     },
     plugins: [
       new webpack.ProgressPlugin(),
-      new CleanWebpackPlugin(), // оставляем один импорт
+      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
