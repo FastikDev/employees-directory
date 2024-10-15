@@ -55,7 +55,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="header">
+      <header className={`header ${!loading && !isNetwork ? 'header_offline' : ''}`}>
         {loading && (
           <div className="loading">
             <h1 className="header__title header__title_offline">Search</h1>
