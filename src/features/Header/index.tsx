@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { TypedUseQuery } from '@reduxjs/toolkit/query/react';
 import { useSearchParams } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import SearchBar from './components/SearchBar';
@@ -55,7 +54,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`header ${!loading && !isNetwork ? 'header_offline' : ''}`}>
+      <header className={`header ${loading || (!loading && !isNetwork) ? 'header_offline' : ''}`}>
         {loading && (
           <div className="loading">
             <h1 className="header__title header__title_offline">Search</h1>
@@ -71,10 +70,10 @@ const Header = () => {
           </div>
         )}
         {!loading && isNetwork && <h1 className="header__title">Search</h1>}
-        {isNetwork && <SearchBar onSearchChange={handleSearching} />}
+        {!loading && isNetwork && <SearchBar onSearchChange={handleSearching} />}
         <Navigation />
       </header>
-      {loading && isMobile && <Refresh />}
+      {!loading && isMobile && <Refresh />}
     </>
   );
 };
