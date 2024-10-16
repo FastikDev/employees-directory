@@ -70,7 +70,7 @@ const Header = () => {
           </div>
         )}
         {!loading && isNetwork && <h1 className="header__title">Search</h1>}
-        {!loading && !isNetwork && <SearchBar onSearchChange={handleSearching} />}
+        {!loading && isNetwork && <SearchBar onSearchChange={handleSearching} />}
         <Navigation />
       </header>
       {loading && isMobile && <Refresh />}
